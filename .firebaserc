@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "delta-42a39"
+  },
+  "targets": {
+    "delta-42a39": {
+      "hosting": {
+        "main": ["delta-5t9i"],
+        "site2": ["delta-2185"],
+        "site3": ["delta-5z73"],
+        "site4": ["delta-28al"],
+        "staging": ["delta-staging-branch"]
+      }
+    }
+  }
+}

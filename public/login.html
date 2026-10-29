@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta V10 | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/login.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+
+    <script src="/js/firebase-init.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/login.js" defer></script>
+    <script src="/js/particles.js"></script>
+</head>
+<body>
+    <div id="login-container" class="neon-element">
+        <h2 class="neon-text animate-in" style="text-align:center; animation-delay: 0s;">
+            Welcome to Delta V10
+        </h2>
+        
+        <hr class="animate-in" style="animation-delay: 0.1s;">
+        
+        <form id="login-form" class="animate-in" style="animation-delay: 0.2s;">
+            <input type="text" id="firstName" placeholder="First Name" required class="neon-input" autocomplete="off">
+            <input type="text" id="lastName" placeholder="Last Name" required class="neon-input" autocomplete="off">
+            <br>
+            <button type="submit" id="loginBtn" class="neon-primary-button">Enter</button>
+        </form>
+        
+        <div id="login-status" class="animate-in" style="display:none; margin-top:15px; text-align:center; color: var(--baby-blue);">
+            <div class="spinner" style="display:inline-block; width:20px; height:20px; border:3px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:#fff; animation:spin 1s ease-in-out infinite; margin-bottom:5px;"></div>
+            <p id="status-text">Closing this tab will result in a cancellation of the request</p>
+        </div>
+
+        <p id="login-error" class="animate-in" style="animation-delay: 0.4s; display:none;"></p>
+    </div>
+
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>

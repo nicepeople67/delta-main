@@ -1,0 +1,1333 @@
+#movies-section {
+    padding: 0;
+    max-width: 100%;
+    background: transparent;
+    min-height: 100vh;
+}
+
+.netflix-search-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-accent-soft);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 150px;
+}
+
+
+.netflix-search-sticky.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.netflix-search-sticky input,
+.search-input-wrapper input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--color-accent-soft);
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    animation: searchSlideIn 0.4s ease-out;
+}
+
+.netflix-search-sticky input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 20px var(--color-accent-shadow);
+}
+
+@keyframes searchSlideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.search-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-accent);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 10px 40px var(--color-accent-shadow);
+}
+
+.autocomplete-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+}
+
+.autocomplete-item:hover {
+    background: rgba(46, 220, 255, 0.1);
+    padding-left: 1rem;
+}
+
+.autocomplete-item img {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+.autocomplete-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.autocomplete-title {
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.autocomplete-type {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.fullscreen-player-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.fullscreen-player-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--color-accent);
+    border: none;
+    color: #000;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 2001;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-close:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.fullscreen-player-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    max-height: 85vh;
+}
+
+.netflix-hero {
+    margin-bottom: 2rem;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.netflix-hero.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px);
+}
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    max-height: 60vh;
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    animation: heroSlideIn 0.6s ease-out;
+}
+
+@keyframes heroSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(10,26,51,0.6) 40%, rgba(10,26,51,0.85) 70%, rgba(10,26,51,0.95) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    max-width: 600px;
+    color: #fff;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    line-height: 1.2;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.hero-rating {
+    background: var(--color-accent);
+    color: var(--color-background);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+}
+
+.hero-year {
+    color: #ccc;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #ddd;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-btn {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.play-btn {
+    background: var(--color-accent);
+    color: var(--color-background);
+    box-shadow: 0 0 30px var(--color-accent-shadow);
+}
+
+.play-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--color-accent-shadow);
+}
+
+.info-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid var(--color-accent-soft);
+}
+
+.info-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: var(--color-accent);
+}
+
+.netflix-search-section {
+    padding: 2rem 2rem 1rem 2rem;
+}
+
+#movies-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--color-accent-soft);
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#movies-search:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 20px var(--color-accent-shadow);
+}
+
+#movies-search::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.netflix-carousels {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.carousel-section {
+    animation: fadeInUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--color-accent-shadow);
+}
+
+.carousel-scroll-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: inset 0 0 10px var(--color-accent-shadow), 0 0 15px var(--color-accent-shadow);
+    text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent-shadow);
+    opacity: 1;
+}
+
+.carousel-scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 0 15px var(--color-accent-shadow), 0 0 25px var(--color-accent-shadow);
+    text-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-accent-shadow);
+}
+
+.carousel-scroll-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.carousel-scroll-left {
+    left: 0;
+}
+
+.carousel-scroll-right {
+    right: 0;
+}
+
+.more-like-this-container {
+    position: fixed;
+    top: calc(50vh + 150px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 900px;
+    background: #181818;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    z-index: 1999;
+    animation: slideDownMore 0.4s ease-out;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@keyframes slideDownMore {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.more-like-this-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.similar-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.similar-carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    max-height: 280px;
+}
+
+.similar-carousel-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.similar-carousel-track::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.similar-carousel-track::-webkit-scrollbar-thumb {
+    background: var(--color-accent-soft);
+    border-radius: 10px;
+}
+
+.similar-carousel-track::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+.similar-carousel-item {
+    flex: 0 0 140px;
+    min-width: 140px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(46, 220, 255, 0.2);
+    scroll-snap-align: start;
+}
+
+.similar-carousel-item:hover {
+    transform: scale(1.08) translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 30px var(--color-accent-shadow);
+}
+
+.similar-carousel-item img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.similar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.similar-carousel-item:hover .similar-overlay {
+    opacity: 1;
+}
+
+.similar-play {
+    color: var(--color-accent);
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px var(--color-accent-shadow);
+}
+
+.similar-title {
+    padding: 0.5rem;
+    color: #fff;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.similar-scroll-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: inset 0 0 10px var(--color-accent-shadow), 0 0 15px var(--color-accent-shadow);
+    text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent-shadow);
+    opacity: 1;
+}
+
+.similar-scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 0 15px var(--color-accent-shadow), 0 0 25px var(--color-accent-shadow);
+    text-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-accent-shadow);
+}
+
+.similar-scroll-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.similar-scroll-left {
+    left: 0;
+}
+
+.similar-scroll-right {
+    right: 0;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+}
+
+.carousel-track::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: var(--color-accent-soft);
+    border-radius: 10px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+.carousel-movie-card {
+    flex: 0 0 190px;
+    min-width: 190px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideInCard 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    scroll-snap-align: start;
+}
+
+@keyframes slideInCard {
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.carousel-poster {
+    position: relative;
+    width: 100%;
+    padding-bottom: 140%;
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 2px solid var(--color-accent-soft);
+    border-radius: 0.5rem;
+}
+
+.carousel-poster::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.carousel-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-movie-card:hover .carousel-overlay {
+    opacity: 1;
+    animation: overlayFadeIn 0.3s ease;
+}
+
+.carousel-movie-card:hover .carousel-poster img {
+    transform: scale(1.15);
+}
+
+.carousel-movie-card:hover {
+    transform: translateY(-15px) scale(1.08);
+    box-shadow: 0 25px 75px var(--color-accent-shadow);
+    border-color: var(--color-accent);
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.carousel-play-btn {
+    background: var(--color-accent);
+    color: var(--color-background);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-play-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
+}
+
+.carousel-info {
+    padding: 0.75rem;
+    background: rgba(0,0,0,0.5);
+}
+
+.carousel-info h3 {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* "Also define the standard property 'line-clamp' for compatibility" Hey VS Code, how about... no? */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.carousel-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.movie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0);
+}
+
+.movie-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.movie-modal-content {
+    position: relative;
+    background: var(--color-surface);
+    border: 2px solid var(--color-accent);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    color: #fff;
+    box-shadow: 0 0 50px var(--color-accent-shadow);
+    z-index: 1001;
+    animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-accent);
+    border: none;
+    color: var(--color-background);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: scale(1.1);
+}
+
+#modal-movie-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.modal-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.modal-meta span {
+    background: var(--color-accent-soft);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.modal-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #ddd;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-play-btn, .modal-info-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.modal-play-btn {
+    background: var(--color-accent);
+    color: var(--color-background);
+}
+
+.modal-play-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.modal-info-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.modal-info-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 280px;
+        max-height: 40vh;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content {
+        padding: 1.5rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        max-height: 60px;
+    }
+    
+    .carousel-movie-card {
+        flex: 0 0 140px;
+    }
+    
+    .netflix-carousels {
+        padding: 0 1rem 1rem 1rem;
+    }
+    
+    .netflix-search-sticky {
+        padding-left: 1rem;
+    }
+    
+    .search-input-wrapper {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        height: 220px;
+        max-height: 35vh;
+    }
+    
+    .hero-title {
+        font-size: 1.3rem;
+    }
+    
+    .hero-description {
+        display: none;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .hero-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-movie-card {
+        flex: 0 0 120px;
+    }
+    
+    .netflix-search-sticky {
+        padding: 1rem;
+        padding-left: 1rem;
+    }
+    
+    .search-input-wrapper {
+        max-width: 100%;
+    }
+}
+
+.detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1500;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.detail-modal.active {
+    display: flex;
+}
+
+.detail-content {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    background: #181818;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 2rem auto;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.detail-backdrop {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center top;
+}
+
+.detail-backdrop-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(24,24,24,0.3) 30%, rgba(24,24,24,0.7) 70%, #181818 100%);
+}
+
+.detail-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #181818;
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.detail-close:hover {
+    background: #333;
+    transform: scale(1.1);
+}
+
+.detail-info {
+    padding: 0 2rem 2rem;
+    margin-top: -100px;
+    position: relative;
+    z-index: 5;
+}
+
+.detail-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.detail-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.detail-rating {
+    color: #46d369;
+    font-weight: bold;
+}
+
+.detail-year, .detail-runtime, .detail-genres {
+    color: #aaa;
+}
+
+.detail-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-play-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.detail-play-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.detail-description {
+    color: #ddd;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+}
+
+.seasons-section {
+    padding: 0 2rem 2rem;
+    border-top: 1px solid #333;
+    margin-top: 1rem;
+}
+
+.seasons-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.seasons-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.season-dropdown {
+    background: #242424;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.episodes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.episode-card {
+    display: flex;
+    gap: 1rem;
+    background: #242424;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.episode-card:hover {
+    background: #333;
+}
+
+.episode-thumbnail {
+    position: relative;
+    width: 200px;
+    min-width: 200px;
+    height: 113px;
+    background: #333;
+    overflow: hidden;
+}
+
+.episode-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.episode-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.episode-card:hover .episode-play-overlay {
+    opacity: 1;
+}
+
+.episode-play-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.episode-info {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.episode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.episode-number {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.episode-runtime {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.episode-title {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.episode-description {
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.more-like-this-section {
+    padding: 2rem 0 0 0;
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+}
+
+.more-like-this-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--color-accent-shadow);
+}
+
+.more-like-this-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.more-like-this-card {
+    flex: 0 0 150px;
+    min-width: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-accent-soft);
+}
+
+.more-like-this-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: var(--color-accent);
+    box-shadow: 0 15px 50px var(--color-accent-shadow);
+}
+
+.more-like-this-poster {
+    position: relative;
+    width: 100%;
+    padding-bottom: 140%;
+    overflow: hidden;
+    background: #333;
+}
+
+.more-like-this-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.more-like-this-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.more-like-this-carousel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.more-like-this-carousel::-webkit-scrollbar-thumb {
+    background: var(--color-accent-soft);
+    border-radius: 3px;
+}
+
+.more-like-this-carousel::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .detail-modal {
+        padding: 0;
+    }
+    
+    .detail-content {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+    
+    .detail-backdrop {
+        height: 250px;
+    }
+    
+    .detail-title {
+        font-size: 1.8rem;
+    }
+    
+    .detail-info {
+        padding: 0 1rem 1rem;
+    }
+    
+    .seasons-section {
+        padding: 0 1rem 1rem;
+    }
+    
+    .episode-thumbnail {
+        width: 130px;
+        min-width: 130px;
+        height: 73px;
+    }
+    
+    .episode-info {
+        padding: 0.75rem;
+    }
+}
