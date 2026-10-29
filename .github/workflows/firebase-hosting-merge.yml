@@ -14,12 +14,12 @@ jobs:
 
       - name: Fix git identity so Firebase doesn't use my old acc
         run: |
-          git config --global user.name "ethanlb34"
-          git config --global user.email "ethanbosman@protonmail.com"
+          git config --global user.name "nicepeople67"
+          git config --global user.email "nicepeople167@gmail.com"
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DELTA_42A39 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DELTA_4E2A }}
           channelId: live
-          projectId: delta-42a39
+          projectId: delta-4e2a
